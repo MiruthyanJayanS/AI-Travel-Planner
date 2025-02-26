@@ -7,8 +7,8 @@ def handle_api_key():
     with st.sidebar:
         google_api_key = st.radio(
             ":blue[Select the method for Inserting Gemini API Key]",
-            ["API_Key Input", "Env_API_Key"],
-            captions=["Input the API key", "API key stored in .env file"]
+            ["API_Key Input", "Env_API_Key", "Streamlit_Secrets"],
+            captions=["Input the API key", "API key stored in .env file", "API key stored in Streamlit secrets"]
         )
 
         if google_api_key == "Env_API_Key":
@@ -17,6 +17,9 @@ def handle_api_key():
         elif google_api_key == "API_Key Input":
             user_input_key = st.text_input("Enter your API Key", type="password")
 
+        elif google_api_key == "Streamlit_Secrets":
+            api_key = st.secrets.get("GOOGLE_API_KEY")
+
         if st.button("Submit API Key", key="api_submit_button", use_container_width=True):
             if google_api_key == "API_Key Input" and user_input_key:
                 st.session_state["API_Key"] = user_input_key
@@ -24,6 +27,9 @@ def handle_api_key():
             elif google_api_key == "Env_API_Key" and api_key:
                 st.session_state["API_Key"] = api_key
                 st.success("API Key loaded from environment!")
+            elif google_api_key == "Streamlit_Secrets" and api_key:
+                st.session_state["API_Key"] = api_key
+                st.success("API Key loaded from Streamlit secrets!")
             else:
                 st.error("API key not found. Please provide a valid key.")
 
