@@ -62,7 +62,6 @@ def get_travel_details():
         st.stop()
 
 def generate_travel_plan(api_key):
-    """Generate a detailed travel plan using the Gemini AI model."""
     chat_model = setup_chat_model(api_key)
     prompt = create_prompt()
     output_str = StrOutputParser()
@@ -108,6 +107,7 @@ def handle_api_key():
             st.warning("Please enter and submit your API Key before proceeding.")
             st.stop()
         return st.session_state["API_Key"]
+    
 # Run the application
 if __name__ == "__main__":
     st.set_page_config(page_title="AI Travel Assistant", page_icon="✈️", layout="wide")
