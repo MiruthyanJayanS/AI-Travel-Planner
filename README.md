@@ -47,7 +47,7 @@ pip install -r requirements.txt
 ### 4️⃣ **Set Up API Key**
 To use **Google Gemini AI**, you need to add an API key.
 
-#### 🔹 **Method 1: Using `.env` File (Recommended)**
+#### 🔹 **Method 1(a): Using `.env` File**
 1. Create a `.env` file in the project root:
 ```sh
 touch .env
@@ -55,6 +55,17 @@ touch .env
 2. Add your API key inside `.env`:
 ```
 API_KEY=your_google_gemini_api_key_here
+```
+### or running using streamlit cloud deployement
+
+#### 🔹 **Method 1(b): Using `secrets.toml` File (Recommended)**
+1. Create a .streamlit/secrets.toml file.
+```sh
+touch .streamlit/secrets.toml
+```
+2. Add your API key inside `secrets.toml`:
+```
+GOOGLE_API_KEY = "your_google_api_key_here"
 ```
 
 #### 🔹 **Method 2: Direct Input in App**
@@ -71,12 +82,20 @@ This will start the **AI Travel Agent Tool** in your browser.
 
 ---
 
+### Running the Cloud Deployed Version
+
+[Click here to access the deployed version](https://genai-travel-assistant.streamlit.app/)
+
+
+
 ## 📁 Project Structure
 ```
 AI_Travel_Agent/
 │── app.py                  # Main Streamlit application
 │── config.py               # Configuration file for API keys
 │── api_handler.py          # Functions for API key handling
+│── streamlit_file.py       # Complete code for streamlit cloud deployment
+│── .streamlit/secrets.toml # API key (not share in Git)
 │── travel_assistant.py     # Core logic for travel planning
 │── requirements.txt        # Dependencies
 │── .env                    # API Key (not shared in Git)
